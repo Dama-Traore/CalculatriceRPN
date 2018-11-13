@@ -6,7 +6,6 @@ public class SaisieRPN {
 		
 		private Scanner sc;
 		private MoteurRPN cal;
-		private Operation op;
     	Stack<Double> p = new Stack<Double> ();
 		
 		
@@ -17,8 +16,28 @@ public class SaisieRPN {
 		
 		public void saisie(){
 			System.out.println("Veuillez saisir un nombre  ou un operateur:");
+			if(sc.hasNextDouble())
+			{
+				double d = sc.nextDouble();
+				cal.enregistrer(d);
+			}
+			else {
+				String sign = sc.nextLine();
+				if(operateur(sign))
+				{
+					Operation op=signe(sign);
+					cal.calcul(op);
+						}
+				else
+				{
+					System.out.println("erreur de saisie");
+				}
+				}
+			}
+			
+			//}
 		
-			while (sc.hasNext())   
+			/*while (sc.hasNext())   
 		      { 
 		       String token = sc.next();   
 
@@ -26,7 +45,7 @@ public class SaisieRPN {
 		       { 
 		    	/*Double op2 = p.pop(); 
 		        Double op1 = p.pop(); */
-		        double result = cal.calcul(token);  
+		       /* double result = cal.calcul(token);  
 		        p.push(result); 
 		       } 
 		       else { 
@@ -34,11 +53,25 @@ public class SaisieRPN {
 				cal.enregistrer(d);
 				} 
 		       
-		      } 
+		      } */
 		      //return p; 
-		     } 
+		   //  } 
 
-		    private boolean operateur(String token) 
+	public Operation signe(String token) {
+		switch (token) {
+        case "+":
+            return Operation.ADD;
+        case "-":
+            return Operation.SUB;
+        case "*":
+            return Operation.MULT;
+        case "/":
+            return Operation.DIV;
+            }
+		return null;
+	}
+		
+	  private boolean operateur(String token)
 		     { 
 		      return (token.equals("+") || token.equals("-") || 
 		        token.equals("*") || token.equals("/"));

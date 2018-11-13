@@ -39,13 +39,9 @@ public enum Operation {
 }
   public String getsymbole() {  
       return  this.symbole ;  
- } 
-  
-  
-  
+ }   
   
   public abstract double eval (double a, double b);
-  
   
   
 }
