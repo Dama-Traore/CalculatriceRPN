@@ -1,18 +1,5 @@
 package masterInfo;
-	// enregistrer operande:
-	//Pile P;
-	//double val1; double val2;
-	
-	//public void Enregistrer(double val)
-	//{
-	//	P.Empiler(val);
-	//}
-	//appliquer une operation sur les operandes:
-	
-	//retourner l'ensemble des opérandes:
-	
-	//public void  ListOperandes()
-	//import java.util.Stack;
+
 
 import java.util.Stack;
 
