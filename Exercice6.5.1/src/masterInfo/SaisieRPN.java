@@ -3,12 +3,10 @@ import java.util.Scanner;
 import java.util.Stack;
 	
 public class SaisieRPN {		
-		//private Scanner sc;
 		private MoteurRPN cal;
     	Stack<Double> p = new Stack<Double> ();
     	
     	public SaisieRPN(){
-		//	sc = new Scanner(System.in);
 			cal = new MoteurRPN();
 		}
     	
@@ -42,10 +40,9 @@ public class SaisieRPN {
 			do{				
 				System.out.println("Veuillez saisir un nombre  ou un operateur:");
 				String sign = sc.nextLine();
-				//if(sign.equals("exit")) return ;
+				if(sign.equals("exit")) return ;
 				
 				 if(IsOperande(sign)){
-					//System.out.println("test"+sign);
 					cal.enregistrer(Double.parseDouble(sign));
 				}
 				
@@ -63,7 +60,7 @@ public class SaisieRPN {
 						Compteur=0;						
 					}					
 				}	
-				//else throw new ;
+				
 				System.out.println("La pile contient:"+cal.getP());
 				}while(true);
 			}
