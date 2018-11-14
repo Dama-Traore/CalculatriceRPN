@@ -60,7 +60,6 @@ public class SaisieRPN {
 						Compteur=0;						
 					}					
 				}	
-				
 				System.out.println("La pile contient:"+cal.getP());
 				}while(true);
 			}
