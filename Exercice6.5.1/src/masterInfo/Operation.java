@@ -23,7 +23,13 @@ public enum Operation {
 	}, DIV ("/") {
 		@Override
 		public double eval(double a, double b) {
-		
+			try {
+				double s=a/b;
+			if (b==0)   
+				throw new DivideException("Division par 0 n'est pas possible\n");
+				
+				} catch (DivideException e) {  
+				}
 			return a/b;
 		}
 	} ;

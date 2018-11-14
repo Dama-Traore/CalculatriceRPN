@@ -14,9 +14,20 @@ public class MoteurRPN{
 		p=new Stack<>();
 	}
 	
+<<<<<<< HEAD
 	public void enregistrer(Double value){
 		if(min_value>value);
 		if(max_value<value);
+=======
+	public void enregistrer(Double value) {
+		if (value> max_value || value< min_value)
+			try {
+				throw new MAXMINException ("La valeur de l'interval n'est pas respecté\n");
+			} catch (MAXMINException e) {
+				e.printStackTrace();
+			}
+		else
+>>>>>>> master
 		p.push(value);
 	}
 	

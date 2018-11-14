@@ -34,7 +34,11 @@ public class SaisieRPN {
     		 return false;
     	}
 		
+<<<<<<< HEAD
 		public void saisie(){ 
+=======
+		public void saisie() throws SAISIEException{ 
+>>>>>>> master
 			Scanner sc=new Scanner(System.in);
 			int Compteur=0;
 			do{				
@@ -59,8 +63,18 @@ public class SaisieRPN {
 						cal.calcul(signe(sign));
 						Compteur=0;						
 					}					
+<<<<<<< HEAD
 				}	
 				System.out.println("La pile contient:"+cal.getP());
+=======
+				} else
+					try {
+						throw new SAISIEException("Erreur de saisie.Veuillez saisir un nombre réel \n");
+					} catch (SAISIEException e) {
+						e.printStackTrace();
+					}
+				System.out.println("\nLa pile contient:"+cal.getP());
+>>>>>>> master
 				}while(true);
 			}
 

@@ -6,11 +6,19 @@ public enum CalculatriceRPN {
 	{
 	
 		SaisieRPN b=new SaisieRPN();
+<<<<<<< HEAD
 	//	try {
 		  b.saisie();
 			/*} catch (CalculatorException e) {
 				System.out.println(e.getMessage());
 			}*/	
+=======
+		  try {
+			b.saisie();
+		} catch (SAISIEException e) {
+			System.out.println(e.getMessage());
+		}		
+>>>>>>> master
 		
 	}
 	
