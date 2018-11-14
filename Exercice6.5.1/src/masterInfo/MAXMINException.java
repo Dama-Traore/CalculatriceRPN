@@ -1,6 +1,6 @@
 package masterInfo;
 
-public class MAXMINException extends CalculatriceRPNExceptions {
+public class MAXMINException extends NumberFormatException  {
 
 	
 

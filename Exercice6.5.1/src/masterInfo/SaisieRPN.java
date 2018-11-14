@@ -1,40 +1,81 @@
 package masterInfo;
 import java.util.Scanner;
 import java.util.Stack;
-public class SaisieRPN   {
 	
-	MoteurRPN m = new MoteurRPN();
-	
-	public void saisir(Stack<Double> p) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Veuillez saisir les operandes s'il vous plait");
-	boolean 	fin= false;
-	while (fin== false)
-	{
-		String  d = sc.nextLine();
-		if (d=="q")
+public class SaisieRPN {
 		
-		{ fin=true;} 
+		public  Scanner sc;
+		public MoteurRPN cal;
+    	Stack<Double> p = new Stack<Double> ();
 		
-		if (d=="entrer") {
-	//	m.calcul(p, c);	
-	
+		
+		public SaisieRPN(){
+			sc = new Scanner(System.in);
+			cal = new MoteurRPN();
 		}
-		else {
-		double o;
-		 o = Double.parseDouble(d);
-		m.enregistrer(o);
 		
+		public void saisie(){
+			System.out.println("Veuillez saisir un nombre  ou un operateur:");
+			if(sc.hasNextDouble())
+			{
+				double d = sc.nextDouble();
+				cal.enregistrer(d);
+			}
+			else {
+				String sign = sc.nextLine();
+				if(operateur(sign))
+				{
+					Operation op=signe(sign);
+					cal.calcul(p,op);
+						}
+				else
+				{
+					System.out.println("erreur de saisie");
+				}
+				}
+			}
+			
+			//}
 		
-		
-		
-		}	
-		
-		
+			/*while (sc.hasNext())   
+		      { 
+		       String token = sc.next();   
+
+		       if (operateur(token))
+		       { 
+		    	/*Double op2 = p.pop(); 
+		        Double op1 = p.pop(); */
+		       /* double result = cal.calcul(token);  
+		        p.push(result); 
+		       } 
+		       else { 
+		    	Double d = sc.nextDouble();
+				cal.enregistrer(d);
+				} 
+		       
+		      } */
+		      //return p; 
+		   //  } 
+
+	public Operation signe(String token) {
+		switch (token) {
+        case "+":
+            return Operation.ADD;
+        case "-":
+            return Operation.SUB;
+        case "*":
+            return Operation.MULT;
+        case "/":
+            return Operation.DIV;
+            }
+		return null;
 	}
 		
+	  private boolean operateur(String token)
+		     { 
+		      return (token.equals("+") || token.equals("-") || 
+		        token.equals("*") || token.equals("/"));
+			}	
 		
-	}
-	
 	
 }

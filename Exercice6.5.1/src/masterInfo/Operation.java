@@ -1,12 +1,17 @@
 package masterInfo;
 
 public enum Operation {
+
+	
 	
 	MULT("*") {
+	
 		@Override
 		public double eval(double a, double b) {
 		
+		
 			return a*b;
+			
 		}
 	}, ADD("+") {
 		@Override
@@ -23,10 +28,19 @@ public enum Operation {
 	}, DIV ("/") {
 		@Override
 		public double eval(double a, double b) {
-		
-			return a/b;
+			
+			try {
+				double s=a/b;
+			if (b==0) {  
+				throw new DivideException(); 
+			}  
+
+		} catch (DivideException e) {  
 		}
-	} ;
+			return a/b;
+		 
+				
+		}};
 	
  private  String symbole;
  

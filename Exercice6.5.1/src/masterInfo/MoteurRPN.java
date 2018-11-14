@@ -6,13 +6,24 @@ import java.util.Stack;
 public class MoteurRPN{
 	Stack<Double> p = new Stack<Double> ();
 	Stack<Double> p2 = new Stack<Double>();
+	double MAXValue = 10000000000000.0;
+	double MINValue = 0.00000000000001;
 	
 	public void enregistrer(Double value) {
+		
+		if (value> MAXValue || value< MINValue)
+			try {
+				throw new MAXMINException ();
+			} catch (MAXMINException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		p.push(value);
 	}
-	public void calcul(Stack<Double> p, char c) {
+	public void calcul(Stack<Double> p, Operation op) {
 		
-		Operation op = Operation.ADD;
+		 //op = Operation.ADD;
 		double resultat = 0;
 		
 		if (op == Operation.ADD) {
