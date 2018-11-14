@@ -2,63 +2,75 @@ package masterInfo;
 import java.util.Scanner;
 import java.util.Stack;
 	
-public class SaisieRPN {
-		
-		public  Scanner sc;
-		public MoteurRPN cal;
+public class SaisieRPN {		
+		private MoteurRPN cal;
     	Stack<Double> p = new Stack<Double> ();
-		
-		
-		public SaisieRPN(){
-			sc = new Scanner(System.in);
+    	
+    	public SaisieRPN(){
 			cal = new MoteurRPN();
 		}
-		
-		public void saisie(){
-			System.out.println("Veuillez saisir un nombre  ou un operateur:");
-			if(sc.hasNextDouble())
-			{
-				double d = sc.nextDouble();
-				cal.enregistrer(d);
+    	
+    	public MoteurRPN getMoteur() {
+    		return cal;
+    	}
+    	
+    	public boolean IsOperande(String sign)
+    	{
+    		try{
+    			Double value= Double.parseDouble(sign);
+    		}catch (Exception e) {
+				return false;
 			}
-			else {
+			return true;
+    	}
+    	
+    	public boolean IsClean(String sign){
+    		if ( sign.equals("c") || sign.equals("clean") ||sign.equals("C") ) 	return true;
+    		return false;
+    	}
+    	
+    	public boolean IsUndo(String sign){
+    		if ( sign.equals("S")|| sign.equals("s") || sign.equals("supprimer") ) return true;
+    		 return false;
+    	}
+		
+		public void saisie() throws SAISIEException{ 
+			Scanner sc=new Scanner(System.in);
+			int Compteur=0;
+			do{				
+				System.out.println("Veuillez saisir un nombre  ou un operateur:");
 				String sign = sc.nextLine();
-				if(operateur(sign))
-				{
-					Operation op=signe(sign);
-					cal.calcul(p,op);
-						}
-				else
-				{
-					System.out.println("erreur de saisie");
+				if(sign.equals("exit")) return ;
+				
+				 if(IsOperande(sign)){
+					cal.enregistrer(Double.parseDouble(sign));
 				}
+				
+				else if (IsClean(sign)) {
+					cal=new MoteurRPN();
+					Compteur=0;
 				}
+
+				else if (IsUndo(sign)) cal.depile();
+				
+				else if (operateur(sign)){						
+					if ( cal.nbrOperande()-1>Compteur ) {
+						Compteur++;
+						cal.calcul(signe(sign));
+						Compteur=0;						
+					}					
+				} else
+					try {
+						throw new SAISIEException("Erreur de saisie.Veuillez saisir un nombre réel \n");
+					} catch (SAISIEException e) {
+						e.printStackTrace();
+					}
+				System.out.println("\nLa pile contient:"+cal.getP());
+				}while(true);
 			}
-			
-			//}
-		
-			/*while (sc.hasNext())   
-		      { 
-		       String token = sc.next();   
 
-		       if (operateur(token))
-		       { 
-		    	/*Double op2 = p.pop(); 
-		        Double op1 = p.pop(); */
-		       /* double result = cal.calcul(token);  
-		        p.push(result); 
-		       } 
-		       else { 
-		    	Double d = sc.nextDouble();
-				cal.enregistrer(d);
-				} 
-		       
-		      } */
-		      //return p; 
-		   //  } 
-
-	public Operation signe(String token) {
-		switch (token) {
+	public Operation signe(String sign) {
+		switch (sign) {
         case "+":
             return Operation.ADD;
         case "-":

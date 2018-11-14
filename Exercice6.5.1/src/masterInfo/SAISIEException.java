@@ -1,10 +1,6 @@
 package masterInfo;
 
 public class SAISIEException extends CalculatriceRPNExceptions {
-
-	
-
-	
 	public SAISIEException ()
     {
         super();
@@ -14,7 +10,7 @@ public class SAISIEException extends CalculatriceRPNExceptions {
 	 public SAISIEException  (String message)
 	    {
 	        super (message);
-	    }
-	 
+	        
+	    } 
 
 }

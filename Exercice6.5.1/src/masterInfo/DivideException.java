@@ -7,6 +7,10 @@ public class DivideException extends ArithmeticException  {
     {
         super();
     }
+	public DivideException(String message)
+    {
+        super (message);
+    }
 
 
 }

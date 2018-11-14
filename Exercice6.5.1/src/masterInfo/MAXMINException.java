@@ -3,8 +3,6 @@ package masterInfo;
 public class MAXMINException extends NumberFormatException  {
 
 	
-
-	
 	public MAXMINException()
     {
         super();

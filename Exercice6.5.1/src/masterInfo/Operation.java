@@ -1,17 +1,12 @@
 package masterInfo;
 
 public enum Operation {
-
-	
 	
 	MULT("*") {
-	
 		@Override
 		public double eval(double a, double b) {
 		
-		
 			return a*b;
-			
 		}
 	}, ADD("+") {
 		@Override
@@ -28,19 +23,16 @@ public enum Operation {
 	}, DIV ("/") {
 		@Override
 		public double eval(double a, double b) {
-			
 			try {
 				double s=a/b;
-			if (b==0) {  
-				throw new DivideException(); 
-			}  
-
-		} catch (DivideException e) {  
-		}
-			return a/b;
-		 
+			if (b==0)   
+				throw new DivideException("Division par 0 n'est pas possible\n");
 				
-		}};
+				} catch (DivideException e) {  
+				}
+			return a/b;
+		}
+	} ;
 	
  private  String symbole;
  
@@ -53,13 +45,9 @@ public enum Operation {
 }
   public String getsymbole() {  
       return  this.symbole ;  
- } 
-  
-  
-  
+ }   
   
   public abstract double eval (double a, double b);
-  
   
   
 }

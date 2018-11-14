@@ -7,8 +7,6 @@ public class CalculatriceRPNExceptions extends Exception {
     {
         super();
     }
-
-	
 	
 	 public CalculatriceRPNExceptions(String message)
 	    {
